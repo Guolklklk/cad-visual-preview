@@ -112,6 +112,68 @@
 
 <div class="wrap">
 
+  <!-- ============ V1.4.1 修复 ============ -->
+  <section style="border-left:6px solid #2e7d52">
+    <h2>★ V1.4.1 木纹缺陷定点修复（最新）</h2>
+    <p class="note">
+      针对上一轮视觉审核提出的 <b>F1（细纹贴合/过密）</b> 与 <b>F2（主纹局部过深）</b> 两处缺陷做<b>定点修复</b>。
+      仅改木纹生成规则，未重构渲染器、未改动柜体结构。
+    </p>
+    <table>
+      <tr><th style="width:22%">缺陷</th><th style="width:39%">根因</th><th>修复</th></tr>
+      <tr><td><b>F1</b> 细纹贴合</td>
+          <td>细纹与主纹**独立生成、无跨层约束** ⇒ 必然出现两条纹贴合；<br>且细纹层间距下限仅约 17mm</td>
+          <td>新增 <b>45mm 最小跨层距离</b>；细纹间距系数 0.52 → 0.75<br>
+              <span style="color:#2e7d52">实测线位置最小间距 <b>0mm → 46mm</b>（#13: 3→48 ｜ #39: 0→49）</span></td></tr>
+      <tr><td><b>F2</b> 主纹过深</td>
+          <td>主纹 alpha 在 0.13~0.26 独立随机，**无相邻约束** ⇒ 可连续取高值</td>
+          <td>alpha 上限 <b>0.26 → 0.21</b> + 相邻平滑（只削峰）<br>
+              <span style="color:#2e7d52">实测深度 max/median <b>1.44 → 1.26</b>（判据 ≤1.5）</span></td></tr>
+    </table>
+    <div class="legend">
+      <span><i class="dot" style="background:#96593c"></i>V1.4（修复前）</span>
+      <span><i class="dot" style="background:#2e7d52"></i>V1.4.1（修复后）</span>
+      <span>同视角 · 同比例 · 同裁切窗口</span>
+    </div>
+
+    <h3>F1 修复证据 · 窄柜 #13 / #39 局部放大（3.4×）</h3>
+    <figure>
+      <a class="shot" data-src="audit-v141/v141-audit-f1.jpg" data-cap="F1 修复证据 · #13 / #39 局部放大">
+        <img src="audit-v141/v141-audit-f1.jpg" alt="F1 修复证据" loading="lazy">
+      </a>
+      <figcaption>上=#13(350×900)，下=#39(350×1400) ｜ 左 V1.4（可见偏深/偏粗的贴合线），右 V1.4.1</figcaption>
+    </figure>
+
+    <h3>F2 修复证据 · 大柜 #35 / #11 局部放大（2.6×）</h3>
+    <figure>
+      <a class="shot" data-src="audit-v141/v141-audit-f2.jpg" data-cap="F2 修复证据 · #35 / #11 局部放大">
+        <img src="audit-v141/v141-audit-f2.jpg" alt="F2 修复证据" loading="lazy">
+      </a>
+      <figcaption>上一行=#35(1780×600)，下一行=#11(1500×600) ｜ 左 V1.4，右 V1.4.1</figcaption>
+    </figure>
+
+    <h3>九件衣柜对照（统一 0.300 px/mm）</h3>
+    <figure>
+      <a class="shot" data-src="audit-v141/v141-audit-wardrobes.jpg" data-cap="九件衣柜 V1.4 → V1.4.1">
+        <img src="audit-v141/v141-audit-wardrobes.jpg" alt="九件衣柜 V1.4.1 对照" loading="lazy">
+      </a>
+      <figcaption>每件左=V1.4，右=V1.4.1 ｜ 原尺寸裁切，未缩放未拉伸</figcaption>
+    </figure>
+
+    <h3>全屋对照</h3>
+    <figure>
+      <a class="shot" data-src="audit-v141/v141-audit-overview.jpg" data-cap="全屋 V1.4 ｜ V1.4.1">
+        <img src="audit-v141/v141-audit-overview.jpg" alt="全屋 V1.4 与 V1.4.1 对照" loading="lazy">
+      </a>
+      <figcaption>左=V1.4，右=V1.4.1 ｜ 同一户型同一渲染参数，差异仅来自木纹规则</figcaption>
+    </figure>
+
+    <ul class="tight">
+      <li><b>已知权衡</b>：跨层约束会跳过与主纹过近的细纹位置 ⇒ 细纹数量由约 34 条降至约 7 条。<b>是否"过于稀疏"仍需人工判断</b>（本轮视觉副手不可用，见下）。</li>
+      <li><b>视觉审美结论</b>：<b>UNVERIFIED</b> —— 本轮视觉模型两次调用均未返回结果，且本机主模型无视觉能力，故<b>无法独立完成视觉审美判断</b>。</li>
+    </ul>
+  </section>
+
   <!-- ============ 审核说明 ============ -->
   <section>
     <h2>审核说明</h2>
