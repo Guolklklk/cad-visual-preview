@@ -112,6 +112,74 @@
 
 <div class="wrap">
 
+  <!-- ============ V1.5 材质实验 ============ -->
+  <section style="border-left:6px solid #245fa0">
+    <h2>★ V1.5 超写实材质实验（最新 · 仅 3 件）</h2>
+    <p class="note">
+      针对「整体过于平面化、缺少真实质感」的人工反馈，从<b>程序模拟木纹</b>升级为<b>真实材质贴图 + 空间光影</b>。
+      <b>仅测试 #13 / #35 / #39 三件</b>，未推广至其余衣柜，未集成正式彩平。
+    </p>
+    <table>
+      <tr><th style="width:16%">版本</th><th style="width:34%">做法</th><th>实测（#35 柜面）</th></tr>
+      <tr><td><b>A · V1.4.1</b></td><td>程序生成线条木纹（对照）</td>
+          <td>RGB(212,195,174) ｜ 亮度 197 ｜ <b>内部 σ = 1.6（数值上近乎纯色平板）</b></td></tr>
+      <tr><td><b>B · V1.5-T</b></td><td>真实橡木贴图，<b>物理 1:1 尺度映射</b></td>
+          <td>RGB(223,196,166) ｜ 亮度 200 ｜ <b>内部 σ = 12.6</b></td></tr>
+      <tr><td><b>C · V1.5-L</b></td><td>B + 表面微观质感 / 边缘受光 / 接触阴影</td>
+          <td>RGB(223,196,165) ｜ 亮度 200 ｜ <b>内部 σ = 12.9</b></td></tr>
+    </table>
+    <div class="legend">
+      <span><i class="dot" style="background:#96593c"></i>A · V1.4.1</span>
+      <span><i class="dot" style="background:#2e7d52"></i>B · V1.5-T</span>
+      <span><i class="dot" style="background:#245fa0"></i>C · V1.5-L</span>
+      <span>同柜体 · 同尺寸 · 同方向 · 同裁切 · 同输出分辨率</span>
+    </div>
+
+    <h3>三件 × 三版本对照</h3>
+    <figure>
+      <a class="shot" data-src="audit-v15/v15-audit-wards.jpg" data-cap="V1.5 三件三版本对照">
+        <img src="audit-v15/v15-audit-wards.jpg" alt="V1.5 三版本对照" loading="lazy">
+      </a>
+      <figcaption>#13(350×900) ｜ #35(1780×600) ｜ #39(350×1400) — 每行 A / B / C</figcaption>
+    </figure>
+
+    <h3>材质细节与光影层次</h3>
+    <figure>
+      <a class="shot" data-src="audit-v15/v15-audit-detail.jpg" data-cap="V1.5 材质细节与光影">
+        <img src="audit-v15/v15-audit-detail.jpg" alt="V1.5 材质细节" loading="lazy">
+      </a>
+      <figcaption>上排：#35 同窗口材质局部（1.8×）｜ 下排：#13 左上角边缘细节（4×）</figcaption>
+    </figure>
+
+    <h3>全屋对照</h3>
+    <figure>
+      <a class="shot" data-src="audit-v15/v15-audit-overview.jpg" data-cap="全屋：V1.4.1 ｜ V1.5-L">
+        <img src="audit-v15/v15-audit-overview.jpg" alt="全屋对照" loading="lazy">
+      </a>
+      <figcaption>左=V1.4.1，右=V1.5-L ｜ 仅三件测试衣柜变化，其余家具逐像素一致</figcaption>
+    </figure>
+
+    <h3>素材来源与授权摘要</h3>
+    <table>
+      <tr><th>项目</th><th>内容</th></tr>
+      <tr><td>素材</td><td>Oak Veneer 01（浅橡木贴面）</td></tr>
+      <tr><td>来源</td><td>PolyHaven ｜ https://polyhaven.com/a/oak_veneer_01</td></tr>
+      <tr><td>作者</td><td>Jenelle van Heerden</td></tr>
+      <tr><td><b>授权</b></td><td><b>CC0</b>（等同公有领域）｜ 原文：「Anyone can use the work in any way and for any purpose,
+          <b>including commercial purposes</b>」｜ 无需署名 ｜ <b>允许再分发</b></td></tr>
+      <tr><td>授权核验</td><td>已读取 https://polyhaven.com/license 原文（2026-10-14），非凭网站名推断</td></tr>
+      <tr><td>实际物理尺寸</td><td><b>1830 × 1830 mm</b>（决定纹理比例映射）</td></tr>
+      <tr><td>文件</td><td>1024×1024 JPG ｜ SHA-256 <code>c14681f7…</code></td></tr>
+    </table>
+
+    <ul class="tight">
+      <li><b>纹理尺度</b>：tile_scale = 1.0（物理 1:1）。小样实测 0.35~0.7 需要多次平铺、出现可见镜像接缝，故取 1.0 使贴图覆盖面积 ≥ 柜体尺寸，<b>基本不平铺</b>。</li>
+      <li><b>木纹方向</b>：平行于柜体长轴（#13/#39 竖向，#35 横向）。<b>注意：V1.4.1 的木纹方向是「垂直长轴」，两版方向相反</b> —— 该差异需人工判断取舍。</li>
+      <li><b>接触阴影</b>：使用统一示意参数（光照方向左上、强度 0.20、柔和度 1.6），<b>不代表现场采光分析，也未写入任何设计尺寸</b>。</li>
+      <li><b>视觉审美结论</b>：<b>UNVERIFIED</b> —— 视觉副手额度耗尽（Qwen 连续返回空），本机主模型无视觉能力，故<b>无法独立完成审美判断</b>。</li>
+    </ul>
+  </section>
+
   <!-- ============ V1.4.1 修复 ============ -->
   <section style="border-left:6px solid #2e7d52">
     <h2>★ V1.4.1 木纹缺陷定点修复（最新）</h2>
