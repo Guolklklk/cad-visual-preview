@@ -178,7 +178,17 @@
       墙体高度为 <b>DEMO_HEIGHT 示意值</b>（数据中无高度字段）；材质为<b>视觉示意</b>，非施工规格。
       审美结论 <b>待人工验收</b>。
     </p>
-    <p><a href="audit-r1a/index.html"><b>→ 打开完整 R1-A 审核页（10 张图 + 客观测量表 + 引擎对照）</b></a></p>
+    <h3>六、R1-A.5 复核结论与 R1-B 裁决</h3>
+    <table>
+      <tr><th style="width:26%">项</th><th>结论</th></tr>
+      <tr><td>MATERIAL IMPROVEMENT</td><td><b>MEDIUM</b> — 材质维度质变（新增光泽/粗糙度/凹凸/真实光照响应），但<b>同素材下细节量未提升</b>（高频细节 HF 2.53 vs 旧路线 4.97，已归因于旧路线的「×1.5 提亮放大梯度 + 重采样锐化」）</td></tr>
+      <tr><td><b>SPATIAL IMPROVEMENT</b></td><td><b>HIGH</b> — 空间明暗变化 <b>3.3×</b>（block_sd 6.58 vs 1.97）、块范围 <b>4.2×</b>（30.3 vs 7.2）；且此为旧路线<b>结构上无法表达</b>的维度</td></tr>
+      <tr><td><b>R1-B 决策</b></td><td><b style="color:#b8860b">CONDITIONAL GO</b> — 先补三项前置优化：① 材质（纹理过滤/关 mipmap，目标 HF ≥ 4.0）② 光照（EEVEE 加 light probe，目标 block_sd ≥ 4.0）③ 转换器（木纹按长轴旋转 + UV 起点可选对齐）</td></tr>
+      <tr><td>外部依赖</td><td>高度数据（层高 + 柜体高度）｜ GPL 法务评估</td></tr>
+      <tr><td>整屋图定位</td><td><b style="color:#a5321f">辅助展示</b> —— 其渲染内容与旧路线不同（旧路线含家具与标注），<b>不作为核心验收依据</b>。核心验收依据是<b>单房间</b>结果（G3/G3e/H1/H2/G2/G2b）</td></tr>
+    </table>
+
+    <p><a href="audit-r1a/index.html"><b>→ 打开完整 R1-A 审核页（10 张图 + 客观测量表 + 引擎对照 + R1-A.5 结论）</b></a></p>
   </section>
 
   <!-- ============ V1.7-A.1 ============ -->

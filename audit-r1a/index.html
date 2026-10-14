@@ -23,7 +23,7 @@
 </style></head><body>
 <header><div class="wrap" style="padding-bottom:0">
 <h1>R1-A · Blender 自动渲染最小验证 · 视觉审核</h1>
-<p class="sub">专业渲染引擎路线首轮最小实验 ｜ 生成时间 2026-10-14 19:13 ｜ Blender 5.2.2 LTS（Windows x64）｜ 产出方式：无头脚本自动生成（<code>blender -b --python</code>）</p>
+<p class="sub">专业渲染引擎路线首轮最小实验 ｜ 生成时间 2026-10-14 20:01 ｜ Blender 5.2.2 LTS（Windows x64）｜ 产出方式：无头脚本自动生成（<code>blender -b --python</code>）</p>
 </div></header>
 <div class="wrap">
 <div class="note"><b>请人工验收（本页无自动审美判定）</b><br>
@@ -32,25 +32,50 @@
 · 材质为<b>视觉示意</b>，非施工规格；素材为 PolyHaven <b>CC0</b>（可商用、无需署名）。<br>
 · 本轮<b>不含家具</b>（家具朝向 40/40 未确认，不猜测）。<br>
 · 本页不含 CAD / 模型数据 / 源码 / 日志 / 凭据 / 客户资料。</div>
-<h2>一、审核图</h2>
-<div class="grid"><div class="card"><h3>G1 · Blender 基础场景测试图（Cycles / RTX 4070）</h3><a href="images/g1.jpg" target="_blank"><img src="images/g1.jpg" alt="Blender 基础场景测试图（Cycles / RTX 4070）"></a><p class="cap">R1A-G1 · 基础场景验证：几何 + Principled BSDF 材质 + 中性照明 + 正交/透视相机，全部由脚本无头生成</p><p class="meta">960x720 (from 960x720) 13 KB</p></div>
-<div class="card"><h3>G2 · 浅橡木材质测试图（三材质样块 · 物理尺度 1:1）</h3><a href="images/g2.jpg" target="_blank"><img src="images/g2.jpg" alt="浅橡木材质测试图（三材质样块 · 物理尺度 1:1）"></a><p class="cap">R1A-G2 · 同一批 CC0 素材经 Blender Principled BSDF 表现：浅橡木 1700mm / 浅灰砖 1825mm / 浅石材 1500mm</p><p class="meta">1602x510 (from 1602x510) 88 KB</p></div>
-<div class="card"><h3>G2b · ★ 关键材质细节（浅橡木 1700mm 样块 1:1 像素）</h3><a href="images/g2b.jpg" target="_blank"><img src="images/g2b.jpg" alt="★ 关键材质细节（浅橡木 1700mm 样块 1:1 像素）"></a><p class="cap">R1A-G2b · 材质细节：板缝、木纹层次、粗糙度与轻微凹凸（凹凸派生自 diffuse 亮度，非实测法线）</p><p class="meta">1800x573 (from 5340x1700) 119 KB</p></div>
-<div class="card"><h3>G3 · Blender 正交房间彩平图（主卧 3550×4550mm · DERIVED_VERIFIED）</h3><a href="images/g3.jpg" target="_blank"><img src="images/g3.jpg" alt="Blender 正交房间彩平图（主卧 3550×4550mm · DERIVED_VERIFIED）"></a><p class="cap">R1A-G3 · 真实房间正交俯视：几何取自独立转换器的「矩形 − 墙带」推导；墙高为 DEMO_HEIGHT 示意值</p><p class="meta">1065x1365 (from 1065x1365) 165 KB</p></div>
-<div class="card"><h3>G3e · 同上 · EEVEE 引擎版本（引擎对照）</h3><a href="images/g3e.jpg" target="_blank"><img src="images/g3e.jpg" alt="同上 · EEVEE 引擎版本（引擎对照）"></a><p class="cap">R1A-G3e · 同一场景 EEVEE 渲染，用于 EEVEE / Cycles 引擎对照</p><p class="meta">1065x1365 (from 1065x1365) 205 KB</p></div>
-<div class="card"><h3>G4 · Blender 整屋彩平（地面 + 墙体 · 3151×3496 @0.30px/mm）</h3><a href="images/g4.jpg" target="_blank"><img src="images/g4.jpg" alt="Blender 整屋彩平（地面 + 墙体 · 3151×3496 @0.30px/mm）"></a><p class="cap">R1A-G4 · 全屋 9 间 DERIVED_VERIFIED 房间 + 38 段墙体带，与旧路线同世界坐标系、同像素尺度</p><p class="meta">1622x1800 (from 3151x3496) 257 KB</p></div>
+<h2>一、核心验收图 · 单房间（R1-A 主要依据）</h2>
+<p class="cap">下列 6 张为 R1-A 的<b>核心验收依据</b>：单房间（主卧 3550×4550mm）几何 + 材质 + 与旧路线的同条件对照。
+评级：<b>SPATIAL IMPROVEMENT = HIGH</b>（空间明暗变化 3.3×，结构性优势）；<b>MATERIAL IMPROVEMENT = MEDIUM</b>（材质维度质变，但同素材细节量未提升）。</p>
+<div class="grid"><div class="card"><h3>G3 · Blender 正交房间彩平图（主卧 3550×4550mm · DERIVED_VERIFIED）</h3><a href="images/g3.jpg" target="_blank"><img src="images/g3.jpg" alt="Blender 正交房间彩平图（主卧 3550×4550mm · DERIVED_VERIFIED）"></a><p class="cap">R1A-G3 · 真实房间正交俯视：几何取自独立转换器的「矩形 − 墙带」推导；墙高为 DEMO_HEIGHT 示意值</p><p class="meta">1065x1365 (from 1065x1365) 165 KB</p></div>
+<div class="card"><h3>G3e · 同上 · EEVEE 引擎版本（引擎对照）</h3><a href="images/g3e.jpg" target="_blank"><img src="images/g3e.jpg" alt="同上 · EEVEE 引擎版本（引擎对照）"></a><p class="cap">R1A-G3e · 同一场景 EEVEE 渲染。★ 实测：EEVEE 的空间明暗变化仅 block_sd 2.24（≈旧路线 1.97），Cycles 为 6.58 ⇒ 空间光影优势只在 Cycles 上成立</p><p class="meta">1065x1365 (from 1065x1365) 205 KB</p></div>
 <div class="card"><h3>H1 · ★ Pillow / Blender 同条件对照（主卧地面材质）</h3><a href="images/h1.jpg" target="_blank"><img src="images/h1.jpg" alt="★ Pillow / Blender 同条件对照（主卧地面材质）"></a><p class="cap">R1A-H1 · 同房间 / 同素材 / 同物理尺度 1700mm / 同像素尺度 0.30px/mm：左=旧路线原代码输出，右=Blender</p><p class="meta">1800x1242 (from 2154x1487) 339 KB</p></div>
 <div class="card"><h3>H2 · ★ 主卧同一世界区域对照（几何边界对齐）</h3><a href="images/h2.jpg" target="_blank"><img src="images/h2.jpg" alt="★ 主卧同一世界区域对照（几何边界对齐）"></a><p class="cap">R1A-H2 · 左为旧路线整图按同一 mm 范围裁剪，右为 Blender 单间渲染；两者像素尺寸完全相同，可直接比对墙线位置</p><p class="meta">1800x1242 (from 2154x1487) 203 KB</p></div>
+<div class="card"><h3>G2b · ★ 关键材质细节（浅橡木 1700mm 样块 1:1 像素）</h3><a href="images/g2b.jpg" target="_blank"><img src="images/g2b.jpg" alt="★ 关键材质细节（浅橡木 1700mm 样块 1:1 像素）"></a><p class="cap">R1A-G2b · 材质细节：板缝、木纹层次、粗糙度与轻微凹凸（凹凸派生自 diffuse 亮度，非实测法线）</p><p class="meta">1800x573 (from 5340x1700) 119 KB</p></div>
+<div class="card"><h3>G2 · 浅橡木材质测试图（三材质样块 · 物理尺度 1:1）</h3><a href="images/g2.jpg" target="_blank"><img src="images/g2.jpg" alt="浅橡木材质测试图（三材质样块 · 物理尺度 1:1）"></a><p class="cap">R1A-G2 · 同一批 CC0 素材经 Blender Principled BSDF 表现：浅橡木 1700mm / 浅灰砖 1825mm / 浅石材 1500mm</p><p class="meta">1602x510 (from 1602x510) 88 KB</p></div></div>
+
+<h2>二、辅助展示图 · 整屋（<span style="color:#a5321f">不作为核心验收依据</span>）</h2>
+<p class="cap">整屋图用于展示<b>全屋尺度下的能力</b>，其渲染内容与旧路线不同（旧路线含家具与标注）⇒
+<b>不得</b>用它直接比较两条路线的优劣，也<b>不得</b>作为 R1-A 核心验收依据。</p>
+<div class="grid"><div class="card"><h3>G1 · Blender 基础场景测试图（Cycles / RTX 4070）</h3><a href="images/g1.jpg" target="_blank"><img src="images/g1.jpg" alt="Blender 基础场景测试图（Cycles / RTX 4070）"></a><p class="cap">R1A-G1 · 基础场景验证：几何 + Principled BSDF 材质 + 中性照明 + 正交/透视相机，全部由脚本无头生成</p><p class="meta">960x720 (from 960x720) 13 KB</p></div>
+<div class="card"><h3>G4 · 整屋彩平（地面 + 墙体 · 3151×3496 @0.30px/mm）</h3><a href="images/g4.jpg" target="_blank"><img src="images/g4.jpg" alt="整屋彩平（地面 + 墙体 · 3151×3496 @0.30px/mm）"></a><p class="cap">R1A-G4 · 全屋 9 间 DERIVED_VERIFIED 房间 + 38 段墙体带，与旧路线同世界坐标系、同像素尺度。★ 定位：**辅助展示**，不作为核心验收依据</p><p class="meta">1622x1800 (from 3151x3496) 257 KB</p></div>
 <div class="card"><h3>H3 · 整屋对照（Pillow 完整彩平 vs Blender 地面+墙）</h3><a href="images/h3.jpg" target="_blank"><img src="images/h3.jpg" alt="整屋对照（Pillow 完整彩平 vs Blender 地面+墙）"></a><p class="cap">R1A-H3 · 同尺度整屋对照。注意：渲染内容不同（旧路线含家具与标注），仅用于地面与墙体的表现比较</p><p class="meta">1800x1060 (from 3174x1870) 191 KB</p></div>
 <div class="card"><h3>H4 · 整屋叠加（几何对齐检查）</h3><a href="images/h4.jpg" target="_blank"><img src="images/h4.jpg" alt="整屋叠加（几何对齐检查）"></a><p class="cap">R1A-H4 · 两图 50% 叠加：墙体与房间边界位置重合度检查（同阈值墙体掩膜 IoU 见审核页数据）</p><p class="meta">1622x1800 (from 3151x3496) 249 KB</p></div></div>
-<h2>二、客观测量（同条件对照）</h2>
+
+<h2>三、R1-A.5 客观视觉测量（可复算）</h2>
+<p class="cap">同一 mm 区域裁剪，同素材 / 同物理尺度 / 同像素尺度。<b>HF</b>=高频细节量（图−高斯模糊的标准差）；
+<b>block_sd</b>=8×8 分块均值亮度的标准差（<b>空间上的明暗变化</b>）。</p>
+<table><thead><tr><th>样本</th><th>平均亮度</th><th>对比度(SD)</th><th>高频细节 HF</th><th>块间方差 block_sd</th><th>块范围</th></tr></thead>
+<tbody><tr><td>pillow_mbr_floor</td><td>198.61</td><td>9.913</td><td><b>4.989</b></td><td><b>1.973</b></td><td>7.19</td></tr><tr><td>blender_mbr_room</td><td>162.0</td><td>9.341</td><td><b>2.529</b></td><td><b>6.577</b></td><td>30.26</td></tr><tr><td>blender_mbr_eevee</td><td>218.92</td><td>8.38</td><td><b>3.308</b></td><td><b>2.243</b></td><td>8.37</td></tr><tr><td>pillow_whole</td><td>210.22</td><td>54.368</td><td><b>10.06</b></td><td><b>23.929</b></td><td>83.63</td></tr><tr><td>blender_whole</td><td>178.28</td><td>50.976</td><td><b>3.556</b></td><td><b>38.679</b></td><td>129.15</td></tr></tbody></table>
+<p class="cap">★ <b>HF 反常已归因</b>：旧路线 HF 更高，源于「×1.5 提亮把梯度也放大 47%」（原贴图 5.199 → 提亮后 7.669）＋重采样链，
+<b>并非细节更多</b>；关闭降噪（2.529→2.556）与提高采样（1024spp: 2.496）均无影响。<br>
+★ <b>EEVEE 拿不到空间优势</b>：其 block_sd 仅 2.24（≈旧路线 1.97），Cycles 为 6.58 ⇒ 空间光影<b>只在 Cycles 上成立</b>。</p>
+<h2>四、客观测量 · 色彩与纹理尺度（同条件对照）</h2>
 <table><thead><tr><th>样本</th><th>尺寸</th><th>平均 RGB</th><th>平均亮度</th><th>饱和度代理</th></tr></thead>
 <tbody><tr><td>pillow_mbr_floor</td><td>[1065, 1365]</td><td>[222.08, 193.33, 161.89]</td><td>198.35</td><td>0.271</td></tr><tr><td>blender_mbr_floor</td><td>[1065, 1365]</td><td>[170.17, 151.38, 132.86]</td><td>154.89</td><td>0.2192</td></tr><tr><td>blender_mbr_floor_inner</td><td>[945, 1245]</td><td>[176.37, 156.47, 136.96]</td><td>160.2</td><td>0.2235</td></tr><tr><td>pillow_mbr_region_crop</td><td>[1065, 1365]</td><td>[214.38, 208.64, 200.23]</td><td>209.4</td><td>0.066</td></tr><tr><td>pillow_whole</td><td>[3151, 3496]</td><td>[214.0, 209.7, 203.5]</td><td>210.28</td><td>0.049</td></tr><tr><td>blender_whole</td><td>[3151, 3496]</td><td>[187.58, 176.22, 164.47]</td><td>178.28</td><td>0.1232</td></tr></tbody></table>
 <p class="cap">板缝间距（纹理物理尺度）：旧路线 <b>64 px ≈ 213.3 mm</b> ｜ Blender <b>16 px ≈ 53.3 mm</b>（0.30px/mm 下 1px = 3.33mm）</p>
-<h2>三、边界与声明</h2>
+<h2>五、边界与声明</h2>
 <div class="note">
 · <b>几何判定</b>：Blender 场景与数据源的平面一致性由独立校验脚本比对（修正后 PASS）；<b>房间轮廓与真实住宅的一致性未验证</b>——数据源为题目面积反推尺寸，非现场实测。<br>
 · <b>审美判定</b>：待人工验收（VISUAL PENDING HUMAN REVIEW）。<br>
 · 本页仅用于视觉评审，<b>不作为施工依据</b>。
+</div>
+<h2>六、R1-A.5 结论与 R1-B 裁决</h2>
+<div class="note" style="border-left-color:#2e7d52">
+<b>MATERIAL IMPROVEMENT = MEDIUM</b> ｜ <b>SPATIAL IMPROVEMENT = HIGH</b> ｜ <b>R1-B 决策 = <span style="color:#b8860b">CONDITIONAL GO</span></b><br><br>
+<b>先补齐三项前置优化，再启动 R1-B</b>：<br>
+① <b>材质优化</b> — 调纹理过滤/关 mipmap（目标 HF ≥ 4.0，当前 2.53）；<br>
+② <b>光照优化</b> — 给 EEVEE 加 light probe（目标 block_sd ≥ 4.0，当前 2.24）；<br>
+③ <b>转换器优化</b> — 木纹按房间长轴旋转 + UV 起点可选对齐。<br><br>
+<b>两项外部依赖</b>：高度数据（层高 + 柜体高度）｜ GPL 法务评估。<br>
+<b>旧路线定位不变</b>：Pillow 继续作为<b>快速交付方案</b>（1.5s / 零依赖 / 冻结不动）。
 </div>
 </div></body></html>

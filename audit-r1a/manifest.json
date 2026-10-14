@@ -1,76 +1,86 @@
 {
- "generated_at": "2026-10-14 19:13",
+ "generated_at": "2026-10-14 20:01",
  "stage_dir": "C:\\Users\\Administrator\\Desktop\\dsh\\DSH_Research\\R1A_Blender_Pilot\\audit-r1a",
  "items": [
-  {
-   "key": "G1",
-   "title": "Blender 基础场景测试图（Cycles / RTX 4070）",
-   "file": "g1.jpg",
-   "info": "960x720 (from 960x720) 13 KB",
-   "caption": "R1A-G1 · 基础场景验证：几何 + Principled BSDF 材质 + 中性照明 + 正交/透视相机，全部由脚本无头生成"
-  },
-  {
-   "key": "G2",
-   "title": "浅橡木材质测试图（三材质样块 · 物理尺度 1:1）",
-   "file": "g2.jpg",
-   "info": "1602x510 (from 1602x510) 88 KB",
-   "caption": "R1A-G2 · 同一批 CC0 素材经 Blender Principled BSDF 表现：浅橡木 1700mm / 浅灰砖 1825mm / 浅石材 1500mm"
-  },
-  {
-   "key": "G2b",
-   "title": "★ 关键材质细节（浅橡木 1700mm 样块 1:1 像素）",
-   "file": "g2b.jpg",
-   "info": "1800x573 (from 5340x1700) 119 KB",
-   "caption": "R1A-G2b · 材质细节：板缝、木纹层次、粗糙度与轻微凹凸（凹凸派生自 diffuse 亮度，非实测法线）"
-  },
   {
    "key": "G3",
    "title": "Blender 正交房间彩平图（主卧 3550×4550mm · DERIVED_VERIFIED）",
    "file": "g3.jpg",
    "info": "1065x1365 (from 1065x1365) 165 KB",
-   "caption": "R1A-G3 · 真实房间正交俯视：几何取自独立转换器的「矩形 − 墙带」推导；墙高为 DEMO_HEIGHT 示意值"
+   "caption": "R1A-G3 · 真实房间正交俯视：几何取自独立转换器的「矩形 − 墙带」推导；墙高为 DEMO_HEIGHT 示意值",
+   "tier": "core"
   },
   {
    "key": "G3e",
    "title": "同上 · EEVEE 引擎版本（引擎对照）",
    "file": "g3e.jpg",
    "info": "1065x1365 (from 1065x1365) 205 KB",
-   "caption": "R1A-G3e · 同一场景 EEVEE 渲染，用于 EEVEE / Cycles 引擎对照"
-  },
-  {
-   "key": "G4",
-   "title": "Blender 整屋彩平（地面 + 墙体 · 3151×3496 @0.30px/mm）",
-   "file": "g4.jpg",
-   "info": "1622x1800 (from 3151x3496) 257 KB",
-   "caption": "R1A-G4 · 全屋 9 间 DERIVED_VERIFIED 房间 + 38 段墙体带，与旧路线同世界坐标系、同像素尺度"
+   "caption": "R1A-G3e · 同一场景 EEVEE 渲染。★ 实测：EEVEE 的空间明暗变化仅 block_sd 2.24（≈旧路线 1.97），Cycles 为 6.58 ⇒ 空间光影优势只在 Cycles 上成立",
+   "tier": "core"
   },
   {
    "key": "H1",
    "title": "★ Pillow / Blender 同条件对照（主卧地面材质）",
    "file": "h1.jpg",
    "info": "1800x1242 (from 2154x1487) 339 KB",
-   "caption": "R1A-H1 · 同房间 / 同素材 / 同物理尺度 1700mm / 同像素尺度 0.30px/mm：左=旧路线原代码输出，右=Blender"
+   "caption": "R1A-H1 · 同房间 / 同素材 / 同物理尺度 1700mm / 同像素尺度 0.30px/mm：左=旧路线原代码输出，右=Blender",
+   "tier": "core"
   },
   {
    "key": "H2",
    "title": "★ 主卧同一世界区域对照（几何边界对齐）",
    "file": "h2.jpg",
    "info": "1800x1242 (from 2154x1487) 203 KB",
-   "caption": "R1A-H2 · 左为旧路线整图按同一 mm 范围裁剪，右为 Blender 单间渲染；两者像素尺寸完全相同，可直接比对墙线位置"
+   "caption": "R1A-H2 · 左为旧路线整图按同一 mm 范围裁剪，右为 Blender 单间渲染；两者像素尺寸完全相同，可直接比对墙线位置",
+   "tier": "core"
+  },
+  {
+   "key": "G2b",
+   "title": "★ 关键材质细节（浅橡木 1700mm 样块 1:1 像素）",
+   "file": "g2b.jpg",
+   "info": "1800x573 (from 5340x1700) 119 KB",
+   "caption": "R1A-G2b · 材质细节：板缝、木纹层次、粗糙度与轻微凹凸（凹凸派生自 diffuse 亮度，非实测法线）",
+   "tier": "core"
+  },
+  {
+   "key": "G2",
+   "title": "浅橡木材质测试图（三材质样块 · 物理尺度 1:1）",
+   "file": "g2.jpg",
+   "info": "1602x510 (from 1602x510) 88 KB",
+   "caption": "R1A-G2 · 同一批 CC0 素材经 Blender Principled BSDF 表现：浅橡木 1700mm / 浅灰砖 1825mm / 浅石材 1500mm",
+   "tier": "core"
+  },
+  {
+   "key": "G1",
+   "title": "Blender 基础场景测试图（Cycles / RTX 4070）",
+   "file": "g1.jpg",
+   "info": "960x720 (from 960x720) 13 KB",
+   "caption": "R1A-G1 · 基础场景验证：几何 + Principled BSDF 材质 + 中性照明 + 正交/透视相机，全部由脚本无头生成",
+   "tier": "aux"
+  },
+  {
+   "key": "G4",
+   "title": "整屋彩平（地面 + 墙体 · 3151×3496 @0.30px/mm）",
+   "file": "g4.jpg",
+   "info": "1622x1800 (from 3151x3496) 257 KB",
+   "caption": "R1A-G4 · 全屋 9 间 DERIVED_VERIFIED 房间 + 38 段墙体带，与旧路线同世界坐标系、同像素尺度。★ 定位：**辅助展示**，不作为核心验收依据",
+   "tier": "aux"
   },
   {
    "key": "H3",
    "title": "整屋对照（Pillow 完整彩平 vs Blender 地面+墙）",
    "file": "h3.jpg",
    "info": "1800x1060 (from 3174x1870) 191 KB",
-   "caption": "R1A-H3 · 同尺度整屋对照。注意：渲染内容不同（旧路线含家具与标注），仅用于地面与墙体的表现比较"
+   "caption": "R1A-H3 · 同尺度整屋对照。注意：渲染内容不同（旧路线含家具与标注），仅用于地面与墙体的表现比较",
+   "tier": "aux"
   },
   {
    "key": "H4",
    "title": "整屋叠加（几何对齐检查）",
    "file": "h4.jpg",
    "info": "1622x1800 (from 3151x3496) 249 KB",
-   "caption": "R1A-H4 · 两图 50% 叠加：墙体与房间边界位置重合度检查（同阈值墙体掩膜 IoU 见审核页数据）"
+   "caption": "R1A-H4 · 两图 50% 叠加：墙体与房间边界位置重合度检查（同阈值墙体掩膜 IoU 见审核页数据）",
+   "tier": "aux"
   }
  ],
  "metrics_present": true,
