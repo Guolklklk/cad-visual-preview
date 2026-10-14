@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V1.4 衣柜材质升级 · 视觉审核</title>
+<meta name="description" content="V1.4 衣柜顶视图组件材质精修 · 独立视觉测试版本审核页">
+<style>
+  :root{
+    --bg:#f2f1ee; --card:#ffffff; --ink:#383634; --sub:#807e7a; --line:#d9d7d2;
+    --accent:#2e7d52; --accent-old:#96593c; --warnbg:#fdf0ec; --warnbd:#c04030; --warnink:#a5321f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font:16px/1.65 "Microsoft YaHei","PingFang SC","Hiragino Sans GB",system-ui,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:1280px;margin:0 auto;padding:0 20px 80px}
+  header{
+    background:linear-gradient(180deg,#ffffff,#f7f6f3);
+    border-bottom:1px solid var(--line);padding:30px 0 26px;margin-bottom:26px;
+  }
+  header .wrap{padding-bottom:0}
+  h1{font-size:27px;margin:0 0 8px;letter-spacing:.2px}
+  .lede{color:var(--sub);margin:0;font-size:15px}
+  .chip{display:inline-block;background:#eaf4ee;color:var(--accent);border:1px solid #b9dcc8;
+        border-radius:12px;padding:2px 11px;font-size:13px;margin-right:8px;font-weight:600}
+  .chip.old{background:#fbf1ec;color:var(--accent-old);border-color:#e8cec0}
+
+  section{background:var(--card);border:1px solid var(--line);border-radius:10px;
+          padding:22px 22px 24px;margin-bottom:22px}
+  h2{font-size:20px;margin:0 0 6px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  h3{font-size:16px;margin:20px 0 8px;color:#4a4845}
+  .note{color:var(--sub);font-size:14px;margin:8px 0 14px}
+  .note b{color:var(--ink)}
+
+  figure{margin:0 0 18px}
+  figure:last-child{margin-bottom:0}
+  .shot{position:relative;display:block;border:1px solid var(--line);border-radius:7px;
+        overflow:hidden;background:#fafaf8;cursor:zoom-in}
+  .shot img{display:block;width:100%;height:auto}
+  .shot::after{content:"点击放大";position:absolute;right:8px;bottom:8px;
+    background:rgba(40,38,36,.72);color:#fff;font-size:12px;padding:3px 9px;border-radius:5px;
+    opacity:0;transition:opacity .18s}
+  .shot:hover::after{opacity:1}
+  figcaption{font-size:13.5px;color:var(--sub);margin-top:7px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:820px){.grid2{grid-template-columns:1fr}}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;margin:4px 0 14px}
+  .legend span{display:flex;align-items:center;gap:6px;color:var(--sub)}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  ul.tight{margin:8px 0 0;padding-left:20px;color:var(--sub);font-size:14.5px}
+  ul.tight li{margin:4px 0}
+  ul.tight li b{color:var(--ink)}
+
+  .disclaim{background:var(--warnbg);border:1px solid #e8c4bb;border-left:6px solid var(--warnbd);
+            border-radius:8px;padding:16px 18px;color:var(--warnink)}
+  .disclaim h2{border-bottom:1px solid #e8c4bb;color:var(--warnink);font-size:18px}
+  .disclaim ul{margin:8px 0 0;padding-left:20px;font-size:14.5px;line-height:1.75}
+  .disclaim li{margin:3px 0}
+
+  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+  th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left}
+  th{background:#f7f6f3;color:var(--sub);font-weight:600;font-size:13px}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+
+  footer{color:var(--sub);font-size:13px;text-align:center;padding:26px 0 0}
+
+  /* ---------- lightbox ---------- */
+  #lb{position:fixed;inset:0;background:rgba(24,23,22,.94);display:none;z-index:9999;
+      touch-action:none;overflow:hidden}
+  #lb.on{display:block}
+  #lb img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+          max-width:none;max-height:none;user-select:none;-webkit-user-drag:none;
+          box-shadow:0 8px 40px rgba(0,0,0,.5);cursor:grab;background:#fff}
+  #lb img.drag{cursor:grabbing}
+  #lb .bar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:10px;
+           padding:12px 16px;background:linear-gradient(180deg,rgba(0,0,0,.62),transparent);
+           color:#fff;font-size:14px}
+  #lb .bar .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.92}
+  #lb button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.28);
+             border-radius:6px;padding:6px 12px;font-size:14px;cursor:pointer;font-family:inherit}
+  #lb button:hover{background:rgba(255,255,255,.26)}
+  #lb .hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:rgba(255,255,255,.7);
+            font-size:13px;pointer-events:none}
+  @media (max-width:640px){
+    #lb .hint{font-size:12px}
+    h1{font-size:22px}
+    .wrap{padding:0 14px 60px}
+    section{padding:18px 15px 20px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>V1.4 衣柜材质升级 · 视觉审核</h1>
+    <p class="lede">
+      <span class="chip">独立视觉测试版本</span>
+      <span class="chip">尚未集成正式彩平</span>
+      <span class="chip old">原始数据问题未解决</span>
+      本页用于人工与外部视觉审核，所有图像为同一渲染参数下的真实输出。
+    </p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ 审核说明 ============ -->
+  <section>
+    <h2>审核说明</h2>
+    <p class="note">本次升级针对上一轮审核提出的三个问题，<b>仅优化视觉表现</b>，未改动任何真实结构、尺寸、位置与朝向。</p>
+    <table>
+      <tr><th style="width:44%">上一轮审核意见</th><th>V1.4 对策</th></tr>
+      <tr><td>① CLEAN 木纹过于均匀，接近规则条纹</td>
+          <td>改为<b>多尺度非等距木纹</b>：主纹 + 细纹两层，间距浮动、线宽与深浅分档</td></tr>
+      <tr><td>② 柜体缺少明暗层次，材质偏平</td>
+          <td>加大框/面明度差，新增<b>边缘柔和高光</b>与<b>极轻内侧阴影</b>（均为 1–2px 细线）</td></tr>
+      <tr><td>③ CONCEPT 模块分段线不够清晰</td>
+          <td>分段线由 1px/浅色 提升为 <b>2px/明确对比</b>，两端内缩不触边框</td></tr>
+    </table>
+    <ul class="tight">
+      <li><b>未改动</b>：柜体尺寸 / 位置 / 朝向 ｜ bbox 完全一致（填充率 100%）</li>
+      <li><b>未增加</b>：柜门、把手、抽屉、内部隔断、开启方向</li>
+      <li><b>未使用</b>：原始图纸中程序生成的把手区信息（该信息不作为真实柜门设计依据）</li>
+    </ul>
+  </section>
+
+  <!-- ============ 1. 全屋新旧对照 ============ -->
+  <section>
+    <h2>1 · 全屋新旧对照（V1.3 → V1.4）</h2>
+    <p class="note">左右两幅为<b>同一户型、同一渲染参数</b>；差异仅来自 9 件衣柜组件，其余家具逐像素一致。</p>
+    <div class="legend">
+      <span><i class="dot" style="background:#c98a63"></i>V1.3（旧）</span>
+      <span><i class="dot" style="background:#2e7d52"></i>V1.4（本次）</span>
+      <span>同一缩放比例 · 未调整亮度或背景</span>
+    </div>
+    <figure>
+      <a class="shot" data-src="wardrobe-v1.4-review-comparison.jpg" data-cap="全屋对照 · V1.3（左）vs V1.4（右）">
+        <img src="wardrobe-v1.4-review-comparison.jpg" alt="全屋对照：V1.3 与 V1.4 并排" loading="lazy">
+      </a>
+      <figcaption>全屋对照 · V1.3（左）vs V1.4（右）｜ 点击可放大并平移查看</figcaption>
+    </figure>
+    <h3>V1.4 CLEAN 全屋单独预览</h3>
+    <figure>
+      <a class="shot" data-src="wardrobe-v1.4-review-preview.jpg" data-cap="V1.4 CLEAN 全屋预览">
+        <img src="wardrobe-v1.4-review-preview.jpg" alt="V1.4 CLEAN 全屋预览" loading="lazy">
+      </a>
+      <figcaption>V1.4 CLEAN 全屋预览 ｜ 放大后可见 9 件衣柜的细木纹与柜体层次</figcaption>
+    </figure>
+    <h3>轻量总览（便于外部读取）</h3>
+    <figure>
+      <a class="shot" data-src="audit/v14-audit-overview.jpg" data-cap="全屋总览（1200px 宽）">
+        <img src="audit/v14-audit-overview.jpg" alt="全屋总览" loading="lazy">
+      </a>
+      <figcaption>全屋总览 · 宽 1200px · 已针对外部图像读取做兼容处理</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ 2. 九件衣柜审核 ============ -->
+  <section>
+    <h2>2 · 九件衣柜审核</h2>
+    <p class="note">
+      九件衣柜使用<b>同一套材质规则</b>，并按各自尺寸自适应：窄柜不出现过密木纹与边框挤压，宽柜不出现机械重复条纹。
+      每件左侧为 V1.3，右侧为 V1.4，<b>原尺寸裁切、同比例、未缩放未拉伸</b>。
+    </p>
+
+    <h3>第 1 组 · #2 / #11 / #13 / #18 / #19</h3>
+    <figure>
+      <a class="shot" data-src="audit/v14-audit-wardrobes-1.jpg" data-cap="九件衣柜对照 · 第 1 组">
+        <img src="audit/v14-audit-wardrobes-1.jpg" alt="九件衣柜对照第 1 组" loading="lazy">
+      </a>
+      <figcaption>第 1 组 ｜ #2（600×3000，最细长）· #11（1500×600）· #13（350×900，窄柜）· #18（600×1100）· #19（400×1400）</figcaption>
+    </figure>
+
+    <h3>第 2 组 · #30 / #34 / #35 / #39</h3>
+    <figure>
+      <a class="shot" data-src="audit/v14-audit-wardrobes-2.jpg" data-cap="九件衣柜对照 · 第 2 组">
+        <img src="audit/v14-audit-wardrobes-2.jpg" alt="九件衣柜对照第 2 组" loading="lazy">
+      </a>
+      <figcaption>第 2 组 ｜ #30（800×1300）· #34（600×1240）· #35（1780×600，最宽件）· #39（350×1400，窄柜）</figcaption>
+    </figure>
+
+    <h3>完整九件（含 CLEAN / CONCEPT 三列）</h3>
+    <figure>
+      <a class="shot" data-src="wardrobe-v1.4-review-components.jpg" data-cap="九件衣柜 · 原始符号 / CLEAN / CONCEPT">
+        <img src="wardrobe-v1.4-review-components.jpg" alt="九件衣柜完整对照" loading="lazy">
+      </a>
+      <figcaption>每件三列：原始符号 → CLEAN（完整连续柜体）→ CONCEPT（600mm 模块化示意分段）</figcaption>
+    </figure>
+
+    <table>
+      <tr><th>编号</th><th>尺寸 (mm)</th><th>特点</th><th class="num">木纹层次</th></tr>
+      <tr><td>#2</td><td>600 × 3000</td><td>最细长件，长轴竖直</td><td class="num">5 层</td></tr>
+      <tr><td>#11</td><td>1500 × 600</td><td>横向中等</td><td class="num">5 层</td></tr>
+      <tr><td>#13</td><td>350 × 900</td><td>窄柜，木纹间距取下限防过密</td><td class="num">5 层</td></tr>
+      <tr><td>#18</td><td>600 × 1100</td><td>纵向中等</td><td class="num">5 层</td></tr>
+      <tr><td>#19</td><td>400 × 1400</td><td>窄长</td><td class="num">5 层</td></tr>
+      <tr><td>#30</td><td>800 × 1300</td><td>近方正，木纹间距取上限防过粗</td><td class="num">5 层</td></tr>
+      <tr><td>#34</td><td>600 × 1240</td><td>纵向中等</td><td class="num">5 层</td></tr>
+      <tr><td>#35</td><td>1780 × 600</td><td>最宽件，主纹 + 细纹双尺度</td><td class="num">5 层</td></tr>
+      <tr><td>#39</td><td>350 × 1400</td><td>窄柜，同上</td><td class="num">5 层</td></tr>
+    </table>
+  </section>
+
+  <!-- ============ 3. 关键细节 ============ -->
+  <section>
+    <h2>3 · 关键细节</h2>
+    <p class="note">
+      重点查看：<b>#13 / #39 窄柜</b>在正常观看比例下是否清楚、<b>#35 大柜</b>是否出现机械重复条纹、
+      <b>CLEAN 木纹</b>质感、以及 <b>CONCEPT 分段线</b>的示意性质。
+      以下图像均由已脱敏的审核图<b>裁切放大</b>得到，未重新设计、未伪造细节。
+    </p>
+    <figure>
+      <a class="shot" data-src="audit/v14-audit-details.jpg" data-cap="关键细节 · #13 / #39 / #35 + 木纹与分段线局部">
+        <img src="audit/v14-audit-details.jpg" alt="关键细节对照" loading="lazy">
+      </a>
+      <figcaption>
+        上排：#13（350×900）V1.3 / V1.4、#39（350×1400）、#35（1780×600）&nbsp;｜&nbsp;
+        下排：CLEAN 木纹局部、CONCEPT 分段线局部（同一窗口）
+      </figcaption>
+    </figure>
+    <figure>
+      <a class="shot" data-src="wardrobe-v1.4-review-details.jpg" data-cap="细节图（完整版）">
+        <img src="wardrobe-v1.4-review-details.jpg" alt="细节图完整版" loading="lazy">
+      </a>
+      <figcaption>细节图完整版 · 含 CLEAN / CONCEPT 同窗口逐像素对照</figcaption>
+    </figure>
+    <ul class="tight">
+      <li><b>CLEAN 木纹</b>：主纹深、细纹浅，两层叠加；间距非等距，避免规则条纹感</li>
+      <li><b>CONCEPT 分段线</b>：仅在概念模式出现，<b>不代表</b>门板数量、开启方向或施工尺寸</li>
+      <li><b>柜体层次</b>：框 / 面明度差 + 边缘高光 + 内侧阴影，均为 1–2px，无投影、无渐变</li>
+    </ul>
+  </section>
+
+  <!-- ============ 4. 审核声明 ============ -->
+  <section class="disclaim">
+    <h2>4 · 审核声明（请务必阅读）</h2>
+    <ul>
+      <li><b>V1.4 是独立视觉测试版本</b>，仅完成了独立渲染测试，<b>尚未集成进正式彩平产出</b>。</li>
+      <li>正式彩平渲染器仍使用原逻辑；本页展示的衣柜效果<b>不在任何正式交付成果中</b>。</li>
+      <li><b>柜体细节不代表真实施工结构</b>：未含柜门、把手、抽屉、内部隔断，也未表达任何开启方向。</li>
+      <li>原始数据<b>仍存在未解决的问题</b>（入户门洞相关），该问题保持开放、未修正。</li>
+      <li><b>本页所有图片均不能作为施工依据</b>，仅用于视觉审核与设计沟通。</li>
+      <li>CONCEPT 模式的 600mm 分段仅为<b>概念示意</b>，不代表实际柜门数量、开启方式或施工尺寸。</li>
+      <li>柜体真实朝向在原始数据中<b>无证据</b>，因此组件采用方向中性表达，不假设任何朝向。</li>
+    </ul>
+  </section>
+
+  <footer>
+    V1.4 衣柜材质升级 · 独立视觉测试 · 仅供审核 ｜ 页面为静态只读，无跟踪、无外部依赖
+  </footer>
+</div>
+
+<!-- ============ lightbox ============ -->
+<div id="lb" aria-hidden="true">
+  <div class="bar">
+    <span class="t" id="lbcap"></span>
+    <button id="lbout">缩小</button>
+    <button id="lbin">放大</button>
+    <button id="lbreset">重置</button>
+    <button id="lbclose">关闭</button>
+  </div>
+  <img id="lbimg" alt="">
+  <div class="hint">滚轮 / 双指缩放 ｜ 拖动平移 ｜ 双击重置 ｜ Esc 关闭</div>
+</div>
+
+<script>
+(function(){
+  var lb=document.getElementById('lb'), img=document.getElementById('lbimg'),
+      cap=document.getElementById('lbcap');
+  var s=1, tx=0, ty=0, dragging=false, sx=0, sy=0;
+  var naturalW=0, naturalH=0;
+
+  function apply(){
+    img.style.transform='translate(-50%,-50%) translate('+tx+'px,'+ty+'px) scale('+s+')';
+  }
+  function fit(){
+    // 初始按视口适配（contain），不改图片本身比例
+    var vw=window.innerWidth, vh=window.innerHeight;
+    var k=Math.min((vw*0.94)/naturalW,(vh*0.86)/naturalH);
+    s=k>0?k:1; tx=0; ty=0; apply();
+  }
+  function open(src, text){
+    img.src=src; cap.textContent=text||'';
+    lb.classList.add('on'); lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    var set=function(){ naturalW=img.naturalWidth||1200; naturalH=img.naturalHeight||800; fit(); };
+    if(img.complete&&img.naturalWidth) set(); else img.onload=set;
+  }
+  function close(){
+    lb.classList.remove('on'); lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow=''; img.src='';
+  }
+  function zoom(f, cx, cy){
+    var ns=Math.max(0.1, Math.min(12, s*f));
+    if(cx!=null){
+      var r=img.getBoundingClientRect(), mx=cx-(r.left+r.width/2), my=cy-(r.top+r.height/2);
+      tx-=mx*(ns/s-1); ty-=my*(ns/s-1);
+    }
+    s=ns; apply();
+  }
+
+  document.querySelectorAll('.shot').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var im=a.querySelector('img');
+      open(a.getAttribute('data-src')||im.src, a.getAttribute('data-cap')||im.alt);
+    });
+  });
+
+  document.getElementById('lbclose').addEventListener('click', close);
+  document.getElementById('lbreset').addEventListener('click', fit);
+  document.getElementById('lbin').addEventListener('click', function(){ zoom(1.5); });
+  document.getElementById('lbout').addEventListener('click', function(){ zoom(1/1.5); });
+
+  lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+  lb.addEventListener('wheel', function(e){ e.preventDefault(); zoom(e.deltaY<0?1.14:1/1.14, e.clientX, e.clientY); }, {passive:false});
+  lb.addEventListener('dblclick', function(){ fit(); });
+
+  img.addEventListener('mousedown', function(e){
+    e.preventDefault(); dragging=true; sx=e.clientX-tx; sy=e.clientY-ty; img.classList.add('drag');
+  });
+  window.addEventListener('mousemove', function(e){
+    if(!dragging) return; tx=e.clientX-sx; ty=e.clientY-sy; apply();
+  });
+  window.addEventListener('mouseup', function(){ dragging=false; img.classList.remove('drag'); });
+
+  // 触屏：单指拖动 + 双指缩放
+  var pd=0;
+  img.addEventListener('touchstart', function(e){
+    if(e.touches.length===1){ dragging=true; sx=e.touches[0].clientX-tx; sy=e.touches[0].clientY-ty; }
+    else if(e.touches.length===2){
+      pd=Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+    }
+  }, {passive:true});
+  img.addEventListener('touchmove', function(e){
+    if(e.touches.length===1&&dragging){
+      tx=e.touches[0].clientX-sx; ty=e.touches[0].clientY-sy; apply(); e.preventDefault();
+    } else if(e.touches.length===2){
+      var d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      if(pd>0){ zoom(d/pd); } pd=d; e.preventDefault();
+    }
+  }, {passive:false});
+  img.addEventListener('touchend', function(){ dragging=false; pd=0; }, {passive:true});
+
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('on')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='+'||e.key==='=') zoom(1.5);
+    if(e.key==='-') zoom(1/1.5);
+    if(e.key==='0') fit();
+  });
+})();
+</script>
+</body>
+</html>
