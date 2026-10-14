@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R1-A · Blender 自动渲染最小验证 · 视觉审核</title>
+<style>
+ body{margin:0;background:#f6f5f3;color:#25231f;font:16px/1.7 "Microsoft YaHei",system-ui,sans-serif}
+ header{padding:34px 26px 22px;background:#fff;border-bottom:1px solid #e6e3de}
+ h1{margin:0 0 8px;font-size:26px} h2{margin:34px 0 10px;font-size:20px}
+ .wrap{max-width:1180px;margin:0 auto;padding:0 26px 70px}
+ .sub{color:#6c6862;font-size:14px}
+ .grid{display:grid;grid-template-columns:1fr;gap:26px}
+ .card{background:#fff;border:1px solid #e6e3de;border-radius:10px;padding:16px 16px 10px}
+ .card h3{margin:2px 0 10px;font-size:17px}
+ .card img{width:100%;height:auto;border-radius:6px;border:1px solid #eae7e2;background:#fff}
+ .cap{color:#3d3934;font-size:14px;margin:10px 0 4px}
+ .meta{color:#8b8681;font-size:12.5px;margin:0}
+ table{border-collapse:collapse;width:100%;background:#fff;border:1px solid #e6e3de;font-size:14px}
+ th,td{border-bottom:1px solid #eeeae5;padding:7px 10px;text-align:left}
+ th{background:#faf9f7;font-weight:600}
+ .note{background:#fff;border:1px solid #e6e3de;border-left:4px solid #c8a06a;border-radius:8px;padding:14px 18px;font-size:14.5px}
+ .bad{color:#b3261e}
+ code{background:#f1efec;padding:1px 5px;border-radius:4px;font-size:13.5px}
+</style></head><body>
+<header><div class="wrap" style="padding-bottom:0">
+<h1>R1-A · Blender 自动渲染最小验证 · 视觉审核</h1>
+<p class="sub">专业渲染引擎路线首轮最小实验 ｜ 生成时间 2026-10-14 19:13 ｜ Blender 5.2.2 LTS（Windows x64）｜ 产出方式：无头脚本自动生成（<code>blender -b --python</code>）</p>
+</div></header>
+<div class="wrap">
+<div class="note"><b>请人工验收（本页无自动审美判定）</b><br>
+· 本页图片<b>全部由脚本自动生成</b>，无人工修图、无后期调色。<br>
+· 几何为<b>推导</b>（房间矩形 − 墙带），<b>非 CAD 原始闭合多边形</b>；墙体高度为 <b>DEMO_HEIGHT 示意值</b>（数据中无高度字段）。<br>
+· 材质为<b>视觉示意</b>，非施工规格；素材为 PolyHaven <b>CC0</b>（可商用、无需署名）。<br>
+· 本轮<b>不含家具</b>（家具朝向 40/40 未确认，不猜测）。<br>
+· 本页不含 CAD / 模型数据 / 源码 / 日志 / 凭据 / 客户资料。</div>
+<h2>一、审核图</h2>
+<div class="grid"><div class="card"><h3>G1 · Blender 基础场景测试图（Cycles / RTX 4070）</h3><a href="images/g1.jpg" target="_blank"><img src="images/g1.jpg" alt="Blender 基础场景测试图（Cycles / RTX 4070）"></a><p class="cap">R1A-G1 · 基础场景验证：几何 + Principled BSDF 材质 + 中性照明 + 正交/透视相机，全部由脚本无头生成</p><p class="meta">960x720 (from 960x720) 13 KB</p></div>
+<div class="card"><h3>G2 · 浅橡木材质测试图（三材质样块 · 物理尺度 1:1）</h3><a href="images/g2.jpg" target="_blank"><img src="images/g2.jpg" alt="浅橡木材质测试图（三材质样块 · 物理尺度 1:1）"></a><p class="cap">R1A-G2 · 同一批 CC0 素材经 Blender Principled BSDF 表现：浅橡木 1700mm / 浅灰砖 1825mm / 浅石材 1500mm</p><p class="meta">1602x510 (from 1602x510) 88 KB</p></div>
+<div class="card"><h3>G2b · ★ 关键材质细节（浅橡木 1700mm 样块 1:1 像素）</h3><a href="images/g2b.jpg" target="_blank"><img src="images/g2b.jpg" alt="★ 关键材质细节（浅橡木 1700mm 样块 1:1 像素）"></a><p class="cap">R1A-G2b · 材质细节：板缝、木纹层次、粗糙度与轻微凹凸（凹凸派生自 diffuse 亮度，非实测法线）</p><p class="meta">1800x573 (from 5340x1700) 119 KB</p></div>
+<div class="card"><h3>G3 · Blender 正交房间彩平图（主卧 3550×4550mm · DERIVED_VERIFIED）</h3><a href="images/g3.jpg" target="_blank"><img src="images/g3.jpg" alt="Blender 正交房间彩平图（主卧 3550×4550mm · DERIVED_VERIFIED）"></a><p class="cap">R1A-G3 · 真实房间正交俯视：几何取自独立转换器的「矩形 − 墙带」推导；墙高为 DEMO_HEIGHT 示意值</p><p class="meta">1065x1365 (from 1065x1365) 165 KB</p></div>
+<div class="card"><h3>G3e · 同上 · EEVEE 引擎版本（引擎对照）</h3><a href="images/g3e.jpg" target="_blank"><img src="images/g3e.jpg" alt="同上 · EEVEE 引擎版本（引擎对照）"></a><p class="cap">R1A-G3e · 同一场景 EEVEE 渲染，用于 EEVEE / Cycles 引擎对照</p><p class="meta">1065x1365 (from 1065x1365) 205 KB</p></div>
+<div class="card"><h3>G4 · Blender 整屋彩平（地面 + 墙体 · 3151×3496 @0.30px/mm）</h3><a href="images/g4.jpg" target="_blank"><img src="images/g4.jpg" alt="Blender 整屋彩平（地面 + 墙体 · 3151×3496 @0.30px/mm）"></a><p class="cap">R1A-G4 · 全屋 9 间 DERIVED_VERIFIED 房间 + 38 段墙体带，与旧路线同世界坐标系、同像素尺度</p><p class="meta">1622x1800 (from 3151x3496) 257 KB</p></div>
+<div class="card"><h3>H1 · ★ Pillow / Blender 同条件对照（主卧地面材质）</h3><a href="images/h1.jpg" target="_blank"><img src="images/h1.jpg" alt="★ Pillow / Blender 同条件对照（主卧地面材质）"></a><p class="cap">R1A-H1 · 同房间 / 同素材 / 同物理尺度 1700mm / 同像素尺度 0.30px/mm：左=旧路线原代码输出，右=Blender</p><p class="meta">1800x1242 (from 2154x1487) 339 KB</p></div>
+<div class="card"><h3>H2 · ★ 主卧同一世界区域对照（几何边界对齐）</h3><a href="images/h2.jpg" target="_blank"><img src="images/h2.jpg" alt="★ 主卧同一世界区域对照（几何边界对齐）"></a><p class="cap">R1A-H2 · 左为旧路线整图按同一 mm 范围裁剪，右为 Blender 单间渲染；两者像素尺寸完全相同，可直接比对墙线位置</p><p class="meta">1800x1242 (from 2154x1487) 203 KB</p></div>
+<div class="card"><h3>H3 · 整屋对照（Pillow 完整彩平 vs Blender 地面+墙）</h3><a href="images/h3.jpg" target="_blank"><img src="images/h3.jpg" alt="整屋对照（Pillow 完整彩平 vs Blender 地面+墙）"></a><p class="cap">R1A-H3 · 同尺度整屋对照。注意：渲染内容不同（旧路线含家具与标注），仅用于地面与墙体的表现比较</p><p class="meta">1800x1060 (from 3174x1870) 191 KB</p></div>
+<div class="card"><h3>H4 · 整屋叠加（几何对齐检查）</h3><a href="images/h4.jpg" target="_blank"><img src="images/h4.jpg" alt="整屋叠加（几何对齐检查）"></a><p class="cap">R1A-H4 · 两图 50% 叠加：墙体与房间边界位置重合度检查（同阈值墙体掩膜 IoU 见审核页数据）</p><p class="meta">1622x1800 (from 3151x3496) 249 KB</p></div></div>
+<h2>二、客观测量（同条件对照）</h2>
+<table><thead><tr><th>样本</th><th>尺寸</th><th>平均 RGB</th><th>平均亮度</th><th>饱和度代理</th></tr></thead>
+<tbody><tr><td>pillow_mbr_floor</td><td>[1065, 1365]</td><td>[222.08, 193.33, 161.89]</td><td>198.35</td><td>0.271</td></tr><tr><td>blender_mbr_floor</td><td>[1065, 1365]</td><td>[170.17, 151.38, 132.86]</td><td>154.89</td><td>0.2192</td></tr><tr><td>blender_mbr_floor_inner</td><td>[945, 1245]</td><td>[176.37, 156.47, 136.96]</td><td>160.2</td><td>0.2235</td></tr><tr><td>pillow_mbr_region_crop</td><td>[1065, 1365]</td><td>[214.38, 208.64, 200.23]</td><td>209.4</td><td>0.066</td></tr><tr><td>pillow_whole</td><td>[3151, 3496]</td><td>[214.0, 209.7, 203.5]</td><td>210.28</td><td>0.049</td></tr><tr><td>blender_whole</td><td>[3151, 3496]</td><td>[187.58, 176.22, 164.47]</td><td>178.28</td><td>0.1232</td></tr></tbody></table>
+<p class="cap">板缝间距（纹理物理尺度）：旧路线 <b>64 px ≈ 213.3 mm</b> ｜ Blender <b>16 px ≈ 53.3 mm</b>（0.30px/mm 下 1px = 3.33mm）</p>
+<h2>三、边界与声明</h2>
+<div class="note">
+· <b>几何判定</b>：Blender 场景与数据源的平面一致性由独立校验脚本比对（修正后 PASS）；<b>房间轮廓与真实住宅的一致性未验证</b>——数据源为题目面积反推尺寸，非现场实测。<br>
+· <b>审美判定</b>：待人工验收（VISUAL PENDING HUMAN REVIEW）。<br>
+· 本页仅用于视觉评审，<b>不作为施工依据</b>。
+</div>
+</div></body></html>
