@@ -112,6 +112,72 @@
 
 <div class="wrap">
 
+  <!-- ============ V1.6 九件统一 ============ -->
+  <section style="border-left:6px solid #7a4fb5">
+    <h2>★ V1.6 九件衣柜统一真实材质（最新）</h2>
+    <p class="note">
+      将 V1.5 已认可的真实材质与光影方案推广到<b>全部九件衣柜</b>，形成配置驱动、可复用、可测试的材质渲染组件。
+      <b>仅限九件衣柜</b>，未扩大至其他家具，未集成正式彩平。
+    </p>
+    <table>
+      <tr><th style="width:26%">项</th><th>内容</th></tr>
+      <tr><td>材质配置</td><td><code>v16/materials.json</code> —— <b>材质/光影参数与柜体几何完全分离</b>，渲染函数内零硬编码柜体参数</td></tr>
+      <tr><td>九件识别</td><td>#2 #11 #13 #18 #19 #30 #34 #35 #39（与只读数据一致）</td></tr>
+      <tr><td>纹理尺度</td><td>物理 1:1（1830mm / 1024px）⇒ 九件 tile_px 恒为 1098px，单一缩放系数 1.0723</td></tr>
+      <tr><td>木纹方向</td><td>沿柜体长轴（<b>视觉规则</b>，与柜门开启方向无关）</td></tr>
+      <tr><td>光影</td><td>统一示意光源（左上）、阴影强度 0.20、柔和度 1.6 —— <b>视觉示意参数</b>，非现场采光模拟</td></tr>
+      <tr><td>自动测试</td><td><b>PASS 14 / FAIL 0</b>（含 V1.5 同条件回归：均差 8.3~10.7）</td></tr>
+      <tr><td>审美状态</td><td><b>PENDING HUMAN REVIEW</b> —— 本轮<b>未调用任何视觉模型</b>（按授权停用）</td></tr>
+    </table>
+
+    <h3>九件总览（CLEAN 模式）</h3>
+    <figure>
+      <a class="shot" data-src="audit-v16/v16-audit-overview.jpg" data-cap="V1.6 九件统一真实材质">
+        <img src="audit-v16/v16-audit-overview.jpg" alt="V1.6 九件总览" loading="lazy">
+      </a>
+      <figcaption>九件使用同一套材质配置，按各自尺寸自适应；每件保持原始比例（未拉伸）</figcaption>
+    </figure>
+
+    <h3>CONCEPT 模式（示意分段）</h3>
+    <figure>
+      <a class="shot" data-src="audit-v16/v16-audit-concept.jpg" data-cap="V1.6 CONCEPT 模式">
+        <img src="audit-v16/v16-audit-concept.jpg" alt="V1.6 CONCEPT 模式" loading="lazy">
+      </a>
+      <figcaption>600mm 示意分段线绘制于贴图<b>之上</b>，未被覆盖 ｜ 不代表真实柜门数量或开启方向</figcaption>
+    </figure>
+
+    <h3>关键细节（#13 / #39 / #35）与边缘阴影特写</h3>
+    <figure>
+      <a class="shot" data-src="audit-v16/v16-audit-details.jpg" data-cap="V1.6 关键细节">
+        <img src="audit-v16/v16-audit-details.jpg" alt="V1.6 细节" loading="lazy">
+      </a>
+      <figcaption>上排：窄柜 #13/#39 与大柜 #35 材质细节 ｜ 下排：边缘与阴影特写（3×）</figcaption>
+    </figure>
+
+    <h3>V1.5 → V1.6 同条件对比</h3>
+    <figure>
+      <a class="shot" data-src="audit-v16/v16-audit-v15v16.jpg" data-cap="V1.5 与 V1.6 对比">
+        <img src="audit-v16/v16-audit-v15v16.jpg" alt="V1.5 与 V1.6" loading="lazy">
+      </a>
+      <figcaption>左=V1.5（仅三件贴图），右=V1.6（九件统一）｜ 同一户型、同一渲染参数</figcaption>
+    </figure>
+
+    <h3>素材来源与授权摘要</h3>
+    <table>
+      <tr><th>项目</th><th>内容</th></tr>
+      <tr><td>素材</td><td>Oak Veneer 01 ｜ 作者 Jenelle van Heerden</td></tr>
+      <tr><td>来源</td><td>PolyHaven ｜ https://polyhaven.com/a/oak_veneer_01</td></tr>
+      <tr><td><b>授权</b></td><td><b>CC0</b>（等同公有领域）｜ 可商用 ｜ 无需署名 ｜ <b>允许再分发</b> ｜ 已读授权原文核验（2026-10-14）</td></tr>
+      <tr><td>物理尺寸</td><td>1830 × 1830 mm ｜ 1024×1024 JPG ｜ SHA-256 <code>c14681f7…</code></td></tr>
+      <tr><td>候选材质</td><td>White Oak Veneer（500mm，<code>candidate_not_default</code>，本轮未用于渲染）</td></tr>
+    </table>
+
+    <ul class="tight">
+      <li><b>视觉模型调用：已停用</b>（按授权）。原有配置与密钥<b>未删除、未修改</b>，DeepSeek 正常工作不受影响，<b>未自动切换其他收费视觉模型、未反复重试</b>。</li>
+      <li>审美结论统一标记 <b>PENDING HUMAN REVIEW</b>；本地程序只负责客观技术检查。</li>
+    </ul>
+  </section>
+
   <!-- ============ V1.5 材质实验 ============ -->
   <section style="border-left:6px solid #245fa0">
     <h2>★ V1.5 超写实材质实验（最新 · 仅 3 件）</h2>
