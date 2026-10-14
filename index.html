@@ -112,6 +112,72 @@
 
 <div class="wrap">
 
+  <!-- ============ V1.7-A.1 ============ -->
+  <section style="border-left:6px solid #2e7d52">
+    <h2>★ V1.7-A.1 浅橡木升级 + 真实房间轮廓安全审计（最新）</h2>
+    <p class="note">
+      定点解决 V1.7-A 的两条人工反馈（<b>木地板偏深</b>、<b>地面质感太弱</b>），
+      并完成<b>房间几何只读审计</b>（本轮最高优先级）。
+    </p>
+
+    <h3>一、几何审计结论（最高优先级）</h3>
+    <table>
+      <tr><th style="width:24%">检查项</th><th>结果</th></tr>
+      <tr><td>闭合房间多边形</td><td><b>不存在</b>（<code>rooms[]</code> 只有 <code>rect</code>；walls 是轴对齐墙带 <code>a~b × lo~hi</code>）</td></tr>
+      <tr><td><b>矩形内部含墙</b></td><td><b>全部 10 间</b>（2.6%~14.0%）⇒ rect 是<b>包围盒</b>，不是地面区域</td></tr>
+      <tr><td>墙带落在矩形内</td><td><b>41.9%</b>（说明矩形把墙体算作地面）</td></tr>
+      <tr><td>房间重叠 / 并集空洞</td><td>0 / 0 ✔（并集 83.05 m²）</td></tr>
+      <tr><td><b>推导遮罩</b></td><td>地面 = <b>矩形 − 墙带</b> ⇒ <b>9 间 DERIVED_VERIFIED</b>（遮罩内墙像素 <b>0</b>、连通 1 块、保留率 86%~97.4%）</td></tr>
+      <tr><td><b>BLOCKED_GEOMETRY</b></td><td><b>1 间：cor 过道</b>（与 4 房相邻，邻房重叠 0.638% > 0.5%）⇒ 保留矩形并显式标注</td></tr>
+      <tr><td>VERIFIED 等级</td><td><b>0 间</b>（数据中不存在可验证的闭合实体，不放水）</td></tr>
+    </table>
+    <p class="note" style="color:#96593c">
+      <b>诚实边界</b>：这是<b>推导</b>而非 CAD 原始多边形；仅在「矩形拼接无空洞无重叠」前提下成立。
+      若户型含异形/L 形房间，<code>rect</code> 本身即失真，本推导不适用。<b>未修改</b>任何墙体/门洞/房间几何。
+    </p>
+    <figure>
+      <a class="shot" data-src="audit-v17a1/v17a1-geometry.jpg" data-cap="V1.7-A.1 几何只读审计">
+        <img src="audit-v17a1/v17a1-geometry.jpg" alt="几何审计" loading="lazy">
+      </a>
+      <figcaption>① 现状矩形 ｜ ② 证据等级 ｜ ③ 地面 = 矩形 − 墙带（实心=墙带）</figcaption>
+    </figure>
+
+    <h3>二、浅橡木素材与 A/B/C 对比</h3>
+    <table>
+      <tr><th style="width:16%">版本</th><th style="width:34%">做法</th><th>素材 / 参数</th></tr>
+      <tr><td><b>A</b></td><td>V1.7-A 原版（对照）</td>
+          <td>Wood Floor（亮度 <b>100</b>，R−G=31）｜ 提亮 ×1.85 ｜ 矩形遮罩 ｜ blend 0.55</td></tr>
+      <tr><td><b>B</b></td><td>换<b>天然浅橡木</b> + 真实遮罩</td>
+          <td>Laminate Floor 02（亮度 <b>132</b>，R−G=27）｜ 提亮仅 <b>×1.50</b> ｜ blend 0.55</td></tr>
+      <tr><td><b>C</b></td><td>B + 质感增强</td>
+          <td>同上 + 细节层（0.55）+ blend <b>0.70</b> + 柔和接触阴影</td></tr>
+    </table>
+    <table>
+      <tr><th>素材</th><th>作者</th><th>物理尺寸</th><th>SHA-256</th><th>授权</th></tr>
+      <tr><td>Laminate Floor 02</td><td>Dario Barresi, Charlotte Baglioni</td><td>1700 mm</td>
+          <td><code>c112a8fb…</code></td><td><b>CC0</b>（已读原文核验，可商用可再分发）</td></tr>
+    </table>
+    <figure>
+      <a class="shot" data-src="audit-v17a1/v17a1-abc.jpg" data-cap="A/B/C 三版本同条件对比">
+        <img src="audit-v17a1/v17a1-abc.jpg" alt="A/B/C 对比" loading="lazy">
+      </a>
+      <figcaption>上排：同窗口 ｜ 下排：同窗口同倍数 2× 细节 ｜ 混合强度候选 0.55 / 0.70 / 0.85</figcaption>
+    </figure>
+
+    <h3>三、全屋对照</h3>
+    <figure>
+      <a class="shot" data-src="audit-v17a1/v17a1-overview.jpg" data-cap="V1.7-A ｜ V1.7-A.1 C">
+        <img src="audit-v17a1/v17a1-overview.jpg" alt="全屋对照" loading="lazy">
+      </a>
+      <figcaption>左=V1.7-A（中棕木·矩形遮罩），右=V1.7-A.1 C（浅橡木·真实遮罩·质感增强）</figcaption>
+    </figure>
+
+    <ul class="tight">
+      <li><b>自动测试 PASS 18 / FAIL 0</b>（含几何来源可追溯、真实遮罩与几何边界一致、不穿墙、不污染邻房、不覆盖家具、授权可追溯、输出可复现、历史组件未覆盖、彩平默认关闭、W-001 OPEN、40 件 UNCONFIRMED）。</li>
+      <li><b>视觉模型调用：已停用</b> ⇒ 审美状态 <b>VISUAL PENDING HUMAN REVIEW</b>。</li>
+    </ul>
+  </section>
+
   <!-- ============ V1.7-A 地面材质 ============ -->
   <section style="border-left:6px solid #b8860b">
     <h2>★ V1.7-A 超写实地面材质实验（最新）</h2>
