@@ -112,6 +112,69 @@
 
 <div class="wrap">
 
+  <!-- ============ V1.7-A 地面材质 ============ -->
+  <section style="border-left:6px solid #b8860b">
+    <h2>★ V1.7-A 超写实地面材质实验（最新）</h2>
+    <p class="note">
+      为全屋地面建立真实材质模块，复用 V1.6 材质架构。<b>仅研发地面</b>，未启动软装、全屋光影重构、2.5D 或 3D，
+      未集成正式彩平。
+    </p>
+    <table>
+      <tr><th style="width:16%">类别</th><th style="width:30%">素材（PolyHaven · CC0）</th><th>参数</th></tr>
+      <tr><td><b>A 木地板</b></td><td>Wood Floor ｜ Dimitrios Savva</td>
+          <td>物理尺度 <b>1700mm</b> ｜ 铺装方向：沿房间长轴 ｜ 接缝来自素材</td></tr>
+      <tr><td><b>B 瓷砖</b></td><td>Concrete Tiles 02 ｜ Charlotte Baglioni</td>
+          <td>物理尺度 <b>1825mm</b> ｜ 对齐房间轴、统一起点 ｜ 接缝来自素材</td></tr>
+      <tr><td><b>C 石材</b></td><td>Marble 01 ｜ Rob Tuytel</td>
+          <td>物理尺度 <b>1500mm</b> ｜ 沿长轴拼接 ｜ 接缝来自素材</td></tr>
+    </table>
+    <div class="legend">
+      <span><i class="dot" style="background:#96593c"></i>原程序纹理</span>
+      <span><i class="dot" style="background:#2e7d52"></i>V1.7-A 真实材质</span>
+      <span>物理尺度 1:1 · 同像素尺度</span>
+    </div>
+
+    <h3>三类材质同尺度对比 + 铺装细节</h3>
+    <figure>
+      <a class="shot" data-src="audit-v17a/v17a-materials.jpg" data-cap="V1.7-A 三类地面材质">
+        <img src="audit-v17a/v17a-materials.jpg" alt="三类地面材质" loading="lazy">
+      </a>
+      <figcaption>上排：同像素尺度对照 ｜ 下排：铺装接缝与色差细节 2.5×</figcaption>
+    </figure>
+
+    <h3>真实房间应用（墙体边界裁切）</h3>
+    <figure>
+      <a class="shot" data-src="audit-v17a/v17a-rooms.jpg" data-cap="V1.7-A 房间应用">
+        <img src="audit-v17a/v17a-rooms.jpg" alt="房间应用" loading="lazy">
+      </a>
+      <figcaption>主卧/客厅（木地板）｜ 厨房/过道（瓷砖）｜ 主卫/阳台（石材）</figcaption>
+    </figure>
+
+    <h3>全屋对照（原程序纹理 ｜ V1.7-A）</h3>
+    <figure>
+      <a class="shot" data-src="audit-v17a/v17a-overview.jpg" data-cap="全屋 V1.7-A 对照">
+        <img src="audit-v17a/v17a-overview.jpg" alt="全屋对照" loading="lazy">
+      </a>
+      <figcaption>左=原有程序纹理，右=V1.7-A 真实地面材质（含 V1.6 衣柜）</figcaption>
+    </figure>
+
+    <h3>素材来源与授权摘要</h3>
+    <table>
+      <tr><th>项目</th><th>内容</th></tr>
+      <tr><td>来源</td><td>PolyHaven（3 项素材，各 1K Diffuse）</td></tr>
+      <tr><td><b>授权</b></td><td><b>CC0</b>（等同公有领域）｜ 可商用 ｜ 无需署名 ｜ 允许再分发 ｜ <b>已读授权原文核验</b>（2026-10-14）</td></tr>
+      <tr><td>校验</td><td>三份素材 SHA-256 已记录并在每次运行中复校验通过</td></tr>
+      <tr><td>构建方式</td><td>真实贴图按<b>物理尺度 1:1</b> 映射；<b>接缝来自素材本身</b>，未叠加代码接缝（避免双重缝）</td></tr>
+    </table>
+
+    <ul class="tight">
+      <li><b>房间边界</b>：<code>rooms[].rect</code> <b>仅矩形，无多边形轮廓</b> ⇒ 房间闭合精度标记 <b>UNKNOWN</b>，按矩形裁切；<b>未修改</b>任何墙体/门洞/房间几何。</li>
+      <li><b>图层</b>：地面材质只写入材质层，墙体与家具在其后绘制 ⇒ 实测<b>边界越界 0 点、墙体 38/38 一致、衣柜 9/9 一致</b>。</li>
+      <li><b>铺装参数</b>（板宽/砖规格/接缝）<b>均为示意/素材自带</b>，无真实铺装图依据，不代表施工规格。</li>
+      <li><b>视觉模型调用：已停用</b> ⇒ 审美状态 <b>VISUAL PENDING HUMAN REVIEW</b>。</li>
+    </ul>
+  </section>
+
   <!-- ============ V1.6 九件统一 ============ -->
   <section style="border-left:6px solid #7a4fb5">
     <h2>★ V1.6 九件衣柜统一真实材质（最新）</h2>
